@@ -26,6 +26,9 @@ export const months = [
 export const API =
   "https://api.openweathermap.org/data/2.5/weather?zip=97007,us&APPID=8e44c500eae35929bb2690f0b5c52ac5&units=imperial";
 
+export const scheduleAPI =
+    "https://my-json-server.typicode.com/jingalls1/scheduledb/schedule";
+
 export const schedule = [
   ["nothing today, happy sunday!"],
   [

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import "./styles.css";
 import { days, months, API } from "./misc.js";
-import { schedule } from "./misc.js";
+import { schedule, scheduleAPI } from "./misc.js";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,7 +14,8 @@ export default class App extends React.Component {
       descrip2: "",
       temp: 0,
       tempMin: 0,
-      tempMax: 0
+      tempMax: 0,
+      schState: [[0], [1], [2], [3], [4], [5], [6]]
     };
   }
 
@@ -29,6 +30,7 @@ export default class App extends React.Component {
         tempMax: Math.round(res.data.main.temp_max)
       })
     );
+    axios.get(scheduleAPI).then(res => this.setState({ schState: res.data }));
   }
 
   timeOfDay = () => {
@@ -44,7 +46,11 @@ export default class App extends React.Component {
     let d = new Date().getDay();
     let daschedule = [];
     for (let i = 0; i < schedule[d].length; i++) {
-      daschedule.push(<li>{schedule[d][i]}</li>);
+      daschedule.push(
+        <tr>
+          <td>{schedule[d][i]}</td>
+        </tr>
+      );
     }
     return daschedule;
   };
@@ -52,8 +58,12 @@ export default class App extends React.Component {
   listLoop = () => {
     let d = new Date().getDay();
     let daschedule = [];
-    for (let i = 0; i < schedule[d].length; i++) {
-      daschedule.push(<tr><td>{schedule[d][i]}</td></tr>);
+    for (let i = 0; i < this.state.schState[d].length; i++) {
+      daschedule.push(
+        <tr>
+          <td>{this.state.schState[d][i]}</td>
+        </tr>
+      );
     }
     return daschedule;
   };
@@ -72,11 +82,8 @@ export default class App extends React.Component {
         </div>
         <br style={{ lineHeight: "1.4" }} />
         <div className="App">
-          
           <div className="weather">Here's Today's Agenda</div>
-          <table id="list">
-          {this.listLoop()}
-          </table>
+          <table id="list">{this.listLoop()}</table>
           <br />
           <div className="weather">Weather for today in Eugene, OR</div>
           <div className="weather2">
