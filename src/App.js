@@ -35,7 +35,7 @@ export default class App extends React.Component {
     let d = new Date();
     if (d.getHours() < 12) {
       return <div className="title">Good Morning, Jacob</div>;
-    } else if (d.getHours() >= 12 && d.getHours() < 6) {
+    } else if (d.getHours() >= 12 && d.getHours() < 18) {
       return <div className="title">Good Afternoon, Jacob</div>;
     } else return <div className="title">Good Evening, Jacob</div>;
   };
@@ -61,7 +61,7 @@ export default class App extends React.Component {
   render() {
     let d = new Date();
     return (
-      <div className="fuck" width={window.innerWidth}>
+      <div className="fuck">
         <br />
         {this.timeOfDay()}
         <br style={{ lineHeight: "1.6" }} />
@@ -72,6 +72,7 @@ export default class App extends React.Component {
         </div>
         <br style={{ lineHeight: "1.4" }} />
         <div className="App">
+          
           <div className="weather">Here's Today's Agenda</div>
           <table id="list">
           {this.listLoop()}
