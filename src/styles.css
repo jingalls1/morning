@@ -5,6 +5,7 @@
 
 body {
   background-image: url("http://i.imgur.com/s5VFtxe.jpg");
+  display: block;
 }
 
 .title {
@@ -57,4 +58,9 @@ body {
   color: white;
   text-align: left;
   margin: auto;
+}
+
+.fuck {
+  height: 100%;
+  width: 100%;
 }

@@ -61,7 +61,7 @@ export default class App extends React.Component {
   render() {
     let d = new Date();
     return (
-      <div>
+      <div className="fuck" width={window.innerWidth}>
         <br />
         {this.timeOfDay()}
         <br style={{ lineHeight: "1.6" }} />
