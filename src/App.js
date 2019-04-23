@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import "./styles.css";
 import { days, months, API } from "./misc.js";
-import { schedule, scheduleAPI } from "./misc.js";
+import { scheduleAPI } from "./misc.js";
+import { holidayAPI } from "./misc";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,8 @@ export default class App extends React.Component {
       temp: 0,
       tempMin: 0,
       tempMax: 0,
-      schState: [[0], [1], [2], [3], [4], [5], [6]]
+      schState: [[0], [1], [2], [3], [4], [5], [6]],
+      holidayName: ""
     };
   }
 
@@ -31,6 +33,23 @@ export default class App extends React.Component {
       })
     );
     axios.get(scheduleAPI).then(res => this.setState({ schState: res.data }));
+    let d = new Date();
+    let year = d.getFullYear();
+    let month = d.getMonth();
+    month = month + 1;
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    let day = d.getDate();
+    if (day < 10) {
+      day = `0${day}`;
+    }
+    let today = `${year}-${month}-${day}`;
+    axios
+      .get(holidayAPI)
+      .then(res =>
+        this.setState({ holidayName: res.data.holidays[today][0].name })
+      );
   }
 
   timeOfDay = () => {
@@ -76,11 +95,14 @@ export default class App extends React.Component {
         {this.timeOfDay()}
         <br style={{ lineHeight: "1.6" }} />
         <div className="title2"> &nbsp;Happy {days[d.getDay()]}!</div>
+
         <div className="title3">
           {" "}
           &nbsp;{months[d.getMonth()]} {d.getDate()}, {d.getFullYear()}{" "}
         </div>
-        <br style={{ lineHeight: "1.4" }} />
+        <div className="title3"> &nbsp;{this.state.holidayName}</div>
+        <br style={{ lineHeight: "1.3" }} />
+
         <div className="App">
           <div className="weather">Here's Today's Agenda</div>
           <table id="list">{this.listLoop()}</table>
