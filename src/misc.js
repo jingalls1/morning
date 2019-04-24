@@ -57,3 +57,8 @@ export const schedule = [
   ],
   ["12:00pm Workout A/B"]
 ];
+
+export const newsAPI =
+  "https://newsapi.org/v2/top-headlines?" +
+  "country=us&" +
+  "apiKey=fe80a73d44b04fd2a742a3e5c35506e2";
