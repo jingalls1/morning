@@ -84,7 +84,7 @@ export default class App extends React.Component {
       this.setState({holidayName: res.data.holidays[today][0].name})
     }
   }
-
+  
   timeOfDay = () => {
     let d = new Date();
     if (d.getHours() < 12) {
@@ -209,6 +209,7 @@ export default class App extends React.Component {
             </span>
           </div>
         </div>
+        <br style={{lineHeight: "2.3"}}/>
       </div>
     );
   }
