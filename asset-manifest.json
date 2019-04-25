@@ -1,13 +1,13 @@
 {
-  "main.css": "/morning/static/css/main.a91e3895.chunk.css",
-  "main.js": "/morning/static/js/main.43596e9f.chunk.js",
-  "main.js.map": "/morning/static/js/main.43596e9f.chunk.js.map",
+  "main.css": "/morning/static/css/main.40dd7f33.chunk.css",
+  "main.js": "/morning/static/js/main.d3353c5c.chunk.js",
+  "main.js.map": "/morning/static/js/main.d3353c5c.chunk.js.map",
   "runtime~main.js": "/morning/static/js/runtime~main.22b1642d.js",
   "runtime~main.js.map": "/morning/static/js/runtime~main.22b1642d.js.map",
   "static/js/2.bc9d0796.chunk.js": "/morning/static/js/2.bc9d0796.chunk.js",
   "static/js/2.bc9d0796.chunk.js.map": "/morning/static/js/2.bc9d0796.chunk.js.map",
   "index.html": "/morning/index.html",
-  "precache-manifest.e7836da00c02f260a6505e6ba972b9ab.js": "/morning/precache-manifest.e7836da00c02f260a6505e6ba972b9ab.js",
+  "precache-manifest.754aa267850b7f6caea4da797ebbfbd5.js": "/morning/precache-manifest.754aa267850b7f6caea4da797ebbfbd5.js",
   "service-worker.js": "/morning/service-worker.js",
-  "static/css/main.a91e3895.chunk.css.map": "/morning/static/css/main.a91e3895.chunk.css.map"
+  "static/css/main.40dd7f33.chunk.css.map": "/morning/static/css/main.40dd7f33.chunk.css.map"
 }
