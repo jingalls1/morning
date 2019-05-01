@@ -45,27 +45,11 @@ export default class App extends React.Component {
       })
     );
     axios.get(scheduleAPI).then(res => this.setState({ schState: res.data }));
-    let d = new Date();
-    let year = d.getFullYear();
-    let month = d.getMonth();
-    month = month + 1;
-    if (month < 10) {
-      month = `0${month}`;
-    }
-    let day = d.getDate();
-    if (day < 10) {
-      day = `0${day}`;
-    }
-    let today = `${year}-${month}-${day}`;
-    axios
-      .get(holidayAPI)
-      .then(res =>
-        this.axiosHolidays(res)
-      );
+    axios.get(holidayAPI).then(res => this.axiosHolidays(res));
     axios.get(newsAPI).then(res => this.setState({ news: res.data.articles }));
   }
 
-  axiosHolidays = (res) => {
+  axiosHolidays = res => {
     let d = new Date();
     let year = d.getFullYear();
     let month = d.getMonth();
@@ -79,12 +63,12 @@ export default class App extends React.Component {
     }
     let today = `${year}-${month}-${day}`;
     if (res.data.holidays[today] === undefined) {
-      console.log('no holidays today')
+      console.log("no holidays today");
     } else {
-      this.setState({holidayName: res.data.holidays[today][0].name})
+      this.setState({ holidayName: res.data.holidays[today][0].name });
     }
-  }
-  
+  };
+
   timeOfDay = () => {
     let d = new Date();
     if (d.getHours() < 12) {
@@ -131,13 +115,17 @@ export default class App extends React.Component {
       return <div>&nbsp;</div>;
     } else {
       let arrTest = [];
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 7; i++) {
         arrTest.push(
           <a
-            style={{ color: "white", fontWeight: "bold", textShadow: "2px 2px 4px black" }}
+            style={{
+              color: "white",
+              fontWeight: "bold",
+              textShadow: "2px 2px 4px black"
+            }}
             href={this.state.news[i].url}
           >
-            {this.state.news[i].title}
+            &diams;&nbsp;{this.state.news[i].title}
           </a>
         );
         arrTest.push(<br />);
@@ -150,7 +138,7 @@ export default class App extends React.Component {
     if (this.state.holidayName.length < 1) {
       return <span />;
     } else {
-      return this.state.holidayName;
+      return <div className="title3"> &nbsp;{this.state.holidayName}</div>;
     }
   };
 
@@ -167,9 +155,17 @@ export default class App extends React.Component {
           {" "}
           &nbsp;{months[d.getMonth()]} {d.getDate()}, {d.getFullYear()}{" "}
         </div>
-        <div className="title3"> &nbsp;{this.holidayHandler()}</div>
+        {this.holidayHandler()}
         <br style={{ lineHeight: "1.3" }} />
         <div className="App">
+        <div className="weather">
+          <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+            News Headlines
+          </SplitText>
+        </div>
+        <div>{this.newsHandler()}</div>
+        <br/>
+
           <div className="weather">
             <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
               Here's Today's Agenda
@@ -177,12 +173,7 @@ export default class App extends React.Component {
           </div>
           <table id="list">{this.listLoop()}</table>
 
-          <div className="weather">
-            <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
-              News Headlines
-            </SplitText>
-          </div>
-          <div>{this.newsHandler()}</div>
+
 
           <div className="weather">
             <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
@@ -209,7 +200,7 @@ export default class App extends React.Component {
             </span>
           </div>
         </div>
-        <br style={{lineHeight: "2.3"}}/>
+        <br style={{ lineHeight: "2.3" }} />
       </div>
     );
   }
