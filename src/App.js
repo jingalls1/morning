@@ -48,7 +48,17 @@ export default class App extends React.Component {
     axios.get(holidayAPI).then(res => this.axiosHolidays(res));
     axios.get(newsAPI).then(res => this.setState({ news: res.data.articles }));
   }
-
+  wearShorts = () => {
+    if (this.state.tempMax > 60) {
+      if (this.state.temp > 65) {
+        return <div>its shorts and T-shirt weather!</div>;
+      } else {
+        return <div>shorts will be great later today, but grab a jacket</div>;
+      }
+    } else {
+      return <div>pants weather today</div>;
+    }
+  };
   axiosHolidays = res => {
     let d = new Date();
     let year = d.getFullYear();
@@ -198,6 +208,7 @@ export default class App extends React.Component {
             <span style={{ fontWeight: "bold" }}>
               {this.state.tempMax}&deg;F
             </span>
+            <span style={{ fontWeight: "bold" }}>{this.wearShorts()}</span>
           </div>
         </div>
         <br style={{ lineHeight: "2.3" }} />
